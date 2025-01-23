@@ -1,9 +1,6 @@
 package com.example.retornosAPI.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class ProductEntity {
@@ -12,16 +9,23 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
     private Double price;
+    private int quantityStock;
+    private String category;
 
     public ProductEntity() {
     }
 
-    public ProductEntity(Long id, String name, Double price) {
+    public ProductEntity(Long id, String name,String description, Double price,int quantityStock,String category) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.price = price;
+        this.quantityStock = quantityStock;
+        this.category = category;
     }
+
 
     public void setId(Long id) {
         this.id = id;
@@ -47,5 +51,27 @@ public class ProductEntity {
         return price;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getQuantityStock() {
+        return quantityStock;
+    }
+
+    public void setQuantityStock(int quantityStock) {
+        this.quantityStock = quantityStock;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }
