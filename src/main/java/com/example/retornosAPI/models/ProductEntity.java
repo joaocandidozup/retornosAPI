@@ -1,6 +1,7 @@
 package com.example.retornosAPI.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class ProductEntity {
@@ -8,10 +9,24 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "O nome é obrigatório")
+    @Pattern(regexp = "[a-zA-Z0-9\\s]{3,100}", message = "O nome deve ter no mínimo 3 e no máximo 100 caracteres")
     private String name;
+
+    @Pattern(regexp = "[a-zA-Z0-9\\s]{0,500}", message = "A descrição pode ter no máximo 500 caracteres")
     private String description;
+
+    @Positive(message = "O preço tem que ser maior que zero")
+    @NotNull(message = "O preço é obrigatório")
     private Double price;
+
+    @NotNull(message = "A quantidade em estoque é obrigatória")
+    @Min(value = 0, message = "A quantidade em estoque deve ser um número inteiro maior ou igual a 0")
     private Integer quantityStock;
+
+    @NotBlank(message = "A categoria é obrigatória")
+    @Pattern(regexp = "Eletrônicos|Roupas|Alimentos", message = "Categoria inválida! Escolha entre: Eletrônicos, Roupas, Alimentos")
     private String category;
 
     public ProductEntity() {
