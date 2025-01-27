@@ -11,13 +11,13 @@ public class ProductEntity {
     private String name;
     private String description;
     private Double price;
-    private int quantityStock;
+    private Integer quantityStock;
     private String category;
 
     public ProductEntity() {
     }
 
-    public ProductEntity(Long id, String name,String description, Double price,int quantityStock,String category) {
+    public ProductEntity(Long id, String name,String description, Double price,Integer quantityStock,String category) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -59,11 +59,11 @@ public class ProductEntity {
         this.description = description;
     }
 
-    public int getQuantityStock() {
+    public Integer getQuantityStock() {
         return quantityStock;
     }
 
-    public void setQuantityStock(int quantityStock) {
+    public void setQuantityStock(Integer quantityStock) {
         this.quantityStock = quantityStock;
     }
 
