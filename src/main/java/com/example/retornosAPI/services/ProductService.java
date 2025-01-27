@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
-
+    Logger logger = LoggerFactory.getLogger(ProductService.class);
     private final ProductRepository repository;
 
     public ProductService(ProductRepository repository) {
@@ -22,9 +22,22 @@ public class ProductService {
 
 
     public Product createProduct(Product product) {
-        ProductEntity entity = new ProductEntity(null, product.name(), product.description(), product.price(), product.quantityStock(), product.category());
+        ProductEntity entity = new ProductEntity(
+                null,
+                product.name(),
+                product.description(),
+                product.price(),
+                product.quantityStock(),
+                product.category());
         ProductEntity savedEntity = repository.save(entity);
-        return new Product(savedEntity.getId(), savedEntity.getName(), savedEntity.getDescription(), savedEntity.getPrice(), savedEntity.getQuantityStock(), savedEntity.getCategory());
+        return new Product(
+
+                savedEntity.getId(),
+                savedEntity.getName(),
+                savedEntity.getDescription(),
+                savedEntity.getPrice(),
+                savedEntity.getQuantityStock(),
+                savedEntity.getCategory());
     }
 
     public Product getProductById(Long id) {
@@ -87,15 +100,15 @@ public class ProductService {
     }
 
     public List<Product> getProductsByName(String name) {
-        Logger logger = LoggerFactory.getLogger(ProductService.class);
 
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("O nome do produto não pode ser vazio.");
+            throw new IllegalArgumentException("O nome do produto é obrigatorio");
         }
 
         List<ProductEntity> entities = repository.findByNameContainingIgnoreCase(name);
         if (entities.isEmpty()) {
-            logger.warn("Nenhum produto encontrado com o nome: {}", name);
+            throw new IllegalArgumentException("Nenhum produto encontrado com o nome:" + name);
+
         } else {
             logger.info("Produtos encontrados com o nome '{}': {}", name, entities.size());
         }
