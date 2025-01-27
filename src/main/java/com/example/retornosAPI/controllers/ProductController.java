@@ -27,7 +27,8 @@ public class ProductController {
         ApiResponse<Product> response = new ApiResponse<>(
                 "success",
                 "Produto cadastrado com sucesso!",
-                productCreated
+                productCreated,
+                null
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -39,7 +40,8 @@ public class ProductController {
         ApiResponse<List<Product>> response = new ApiResponse<>(
                 "success",
                 "Produtos encontrados com sucesso!",
-                products
+                products,
+                null
         );
         return ResponseEntity.ok(response);
     }
@@ -51,7 +53,8 @@ public class ProductController {
         ApiResponse<Product> response = new ApiResponse<>(
                 "success",
                 "Produto listado com sucesso!",
-                product
+                product,
+                null
         );
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -63,7 +66,8 @@ public class ProductController {
         ApiResponse<List<Product>> response = new ApiResponse<>(
                 "success",
                 "Produtos listados com sucesso!!",
-                listProducts
+                listProducts,
+                null
         );
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -77,7 +81,8 @@ public class ProductController {
         ApiResponse<Product> response = new ApiResponse<>(
                 "success",
                 "Produto atualizado com sucesso!",
-                productUpdated
+                productUpdated,
+                null
         );
 
         return ResponseEntity.ok(response);
@@ -91,6 +96,7 @@ public class ProductController {
         ApiResponse<Void> response = new ApiResponse<>(
                 "success",
                 "Produto deletado com sucesso!",
+                null,
                 null
         );
 
