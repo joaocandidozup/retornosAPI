@@ -23,6 +23,7 @@ public class HandlerException {
         ApiResponse<List<String>> response = new ApiResponse<>(
                 "error",
                 "Erro de validação.",
+                null,
                 errors
         );
 
@@ -32,8 +33,9 @@ public class HandlerException {
     public ResponseEntity<ApiResponse<String>> handleProductNotFoundException(ProductNotFoundException ex) {
         ApiResponse<String> response = new ApiResponse<>(
                 "error",
-                ex.getMessage(),
-                null
+                "Erro na listagem do produto",
+                null,
+                ex.getMessage()
         );
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
@@ -41,10 +43,21 @@ public class HandlerException {
     public ResponseEntity<ApiResponse<String>> handleIllegalArgumentException(IllegalArgumentException ex) {
         ApiResponse<String> response = new ApiResponse<>(
                 "error",
-                ex.getMessage(),
-                null
+                "Erro em algum argumento ",
+                null,
+                ex.getMessage()
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse<String>> handleGenericException(Exception ex) {
+        ApiResponse<String> response = new ApiResponse<>(
+                "error",
+                "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.",
+                null,
+                null
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }
 
