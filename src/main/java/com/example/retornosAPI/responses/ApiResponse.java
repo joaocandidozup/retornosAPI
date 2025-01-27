@@ -4,11 +4,13 @@ public class ApiResponse<T> {
     private String status;
     private String message;
     private T data;
+    private T error;
 
-    public ApiResponse(String status, String message, T data) {
+    public ApiResponse(String status, String message, T data, T error) {
         this.status = status;
         this.message = message;
         this.data = data;
+        this.error = error;
     }
 
     public String getStatus() {
@@ -33,6 +35,14 @@ public class ApiResponse<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public T getError() {
+        return error;
+    }
+
+    public void setError(T error) {
+        this.error = error;
     }
 }
 
